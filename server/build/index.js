@@ -7,7 +7,7 @@ const express_1 = __importDefault(require("express"));
 const morgan_1 = __importDefault(require("morgan"));
 const cors_1 = __importDefault(require("cors"));
 const indexRoutes_1 = __importDefault(require("./routes/indexRoutes"));
-const pacienteRoutes_1 = __importDefault(require("./routes/pacienteRoutes"));
+const associateRoutes_1 = __importDefault(require("./routes/associateRoutes"));
 const sesionRoutes_1 = __importDefault(require("./routes/sesionRoutes"));
 class Server {
     constructor() {
@@ -24,7 +24,7 @@ class Server {
     }
     routes() {
         this.app.use('/', indexRoutes_1.default);
-        this.app.use('/api/Pacientes', pacienteRoutes_1.default);
+        this.app.use('/api/Associate', associateRoutes_1.default);
         this.app.use('/api/Sesion', sesionRoutes_1.default);
     }
     start() {

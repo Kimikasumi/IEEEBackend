@@ -8,7 +8,7 @@ class SesionRoutes {
         this.config();
     }
     config() {
-        this.router.post('/inicioSesion', sesionController_1.sesionController.iniciarSesion);
+        this.router.post('/inicioSesion', sesionController_1.sesionController.IniciarSesion);
     }
 }
 const sesionRoutes = new SesionRoutes();

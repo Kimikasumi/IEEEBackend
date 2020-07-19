@@ -5,6 +5,6 @@ export default
         host: 'localhost',
         user: 'root',
         password: '1234',
-        database: 'dmt2'
+        database: 'ieeedb'
     }
 }

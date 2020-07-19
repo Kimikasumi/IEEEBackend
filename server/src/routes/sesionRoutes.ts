@@ -13,7 +13,7 @@ class SesionRoutes
 
     config() : void
     {
-        this.router.post('/inicioSesion', sesionController.iniciarSesion);
+        this.router.post('/inicioSesion', sesionController.IniciarSesion);
     }
 }
 

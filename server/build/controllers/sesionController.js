@@ -15,11 +15,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.sesionController = void 0;
 const database_1 = __importDefault(require("../database"));
 class SesionController {
-    iniciarSesion(req, res) {
+    IniciarSesion(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const correo = req.body.correo;
-            const clave = req.body.clave;
-            const usuario = yield database_1.default.query("SELECT * FROM usuario WHERE correo='" + correo + "' AND clave='" + clave + "'");
+            const name_user = req.body.name_user;
+            const u_password = req.body.u_password;
+            const usuario = yield database_1.default.query("SELECT * FROM the_user WHERE name_user='" + name_user + "' AND u_password='" + u_password + "'");
             if (usuario[0] == null) {
                 return res.json({ text: 'Usuario o contraseña incorrecto' });
             }
