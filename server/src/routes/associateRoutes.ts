@@ -2,6 +2,8 @@ import {Router} from 'express';
 
 import {associateController} from '../controllers/associateController';
 
+import verify from "../verifyToken";
+
 class AssociateRoutes
 {
     public router: Router = Router();
@@ -13,7 +15,7 @@ class AssociateRoutes
 
     config() : void
     {
-        this.router.get('/', associateController.List);
+        this.router.get('/' ,associateController.List);
         this.router.get('/:id', associateController.GetOne);
         this.router.post('/create', associateController.Create);
         this.router.put('/inactivate/:id', associateController.Inactivate);

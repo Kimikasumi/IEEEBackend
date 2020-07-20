@@ -1,5 +1,6 @@
 import {Request, Response, json} from 'express';
 import db from '../database';
+const jwt = require('jsonwebtoken')
 
 class SesionController
 {
@@ -12,7 +13,11 @@ class SesionController
         {
            return res.json({text: 'Usuario o contraseña incorrecto'});
         }
-        return res.json(usuario[0]);
+        //Create and put a token
+        const token = jwt.sign({id_user:usuario[0].u_password}, "token" ,{
+            expiresIn: '1h'
+        })
+        return res.header('auth-token',token).send(token)
     }
 }
 export const sesionController = new SesionController(); 

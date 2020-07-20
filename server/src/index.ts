@@ -4,6 +4,8 @@ import cors from 'cors';
 import indexRoutes from './routes/indexRoutes';
 import associateRoutes from './routes/associateRoutes';
 import sesionRoutes from './routes/sesionRoutes';
+import userRoutes from './routes/userRoutes';
+
 class Server
 {
     public app : Application;
@@ -27,6 +29,7 @@ class Server
         this.app.use('/',indexRoutes);
         this.app.use('/api/Associate',associateRoutes);
         this.app.use('/api/Sesion',sesionRoutes);
+        this.app.use('/api/User',userRoutes);
     }
 
     start() : void
