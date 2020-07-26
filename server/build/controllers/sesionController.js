@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.sesionController = void 0;
 const database_1 = __importDefault(require("../database"));
+const jwt = require('jsonwebtoken');
 class SesionController {
     IniciarSesion(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -23,7 +24,11 @@ class SesionController {
             if (usuario[0] == null) {
                 return res.json({ text: 'Usuario o contraseña incorrecto' });
             }
-            return res.json(usuario[0]);
+            //Create and put a token
+            const token = jwt.sign({ id_user: usuario[0].u_password }, "token", {
+                expiresIn: '1h'
+            });
+            return res.header('auth-token', token).send(token);
         });
     }
 }

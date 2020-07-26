@@ -4,7 +4,7 @@ class IndexController
 {
     index(req: Request, res: Response)
     {
-        res.json({text: 'Servicios DMT2'})
+        res.json({text: 'This is the API for the IEEE Application'})
     }
 }
 

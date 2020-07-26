@@ -7,6 +7,7 @@ import sesionRoutes from './routes/sesionRoutes';
 import picturesRoutes from './routes/PicturesRoutes';
 import path from 'path';
 
+import userRoutes from './routes/userRoutes';
 
 class Server
 {
@@ -33,6 +34,7 @@ class Server
         this.app.use('/api/Associate',associateRoutes);
         this.app.use('/api/Sesion',sesionRoutes);
         this.app.use('/api/Pictures',picturesRoutes);
+        this.app.use('/api/User',userRoutes);
     }
 
     start() : void
