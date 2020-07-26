@@ -4,6 +4,10 @@ import cors from 'cors';
 import indexRoutes from './routes/indexRoutes';
 import associateRoutes from './routes/associateRoutes';
 import sesionRoutes from './routes/sesionRoutes';
+import picturesRoutes from './routes/PicturesRoutes';
+import path from 'path';
+
+
 class Server
 {
     public app : Application;
@@ -21,12 +25,14 @@ class Server
         this.app.use(cors());
         this.app.use(express.json());
         this.app.use(express.urlencoded({extended: false}));
+        this.app.use('/images', express.static(path.resolve('images')));
     }
     routes() : void
     {
         this.app.use('/',indexRoutes);
         this.app.use('/api/Associate',associateRoutes);
         this.app.use('/api/Sesion',sesionRoutes);
+        this.app.use('/api/Pictures',picturesRoutes);
     }
 
     start() : void
