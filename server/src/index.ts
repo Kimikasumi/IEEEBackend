@@ -8,7 +8,7 @@ import picturesRoutes from './routes/PicturesRoutes';
 import path from 'path';
 
 import userRoutes from './routes/userRoutes';
-
+import eventRoutes from './routes/eventRoutes';
 class Server
 {
     public app : Application;
@@ -35,6 +35,7 @@ class Server
         this.app.use('/api/Sesion',sesionRoutes);
         this.app.use('/api/Pictures',picturesRoutes);
         this.app.use('/api/User',userRoutes);
+        this.app.use('/api/Event',eventRoutes)
     }
 
     start() : void

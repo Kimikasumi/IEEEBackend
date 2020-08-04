@@ -28,6 +28,23 @@ class UserController {
         return __awaiter(this, void 0, void 0, function* () {
             const id_user = req.params.id_user;
             const results = yield database_1.default.query("SELECT * FROM the_user, chapter WHERE the_user.id_chapter=chapter.id_chapter AND the_user.id_user=" + id_user);
+            if (results.length === 0) {
+                return res.status(404).send({ text: "No hay ningun usuario en el sistema con id " + id_user });
+            }
+            res.send(results);
+        });
+    }
+    GetForChapter(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const id_chapter = req.params.id_chapter;
+            const chapter = yield database_1.default.query("SELECT * FROM  chapter WHERE chapter.id_chapter=" + id_chapter);
+            if (chapter.length === 0) {
+                return res.status(404).send({ text: "No hay ningun capitulo en el sistema con id " + id_chapter });
+            }
+            const results = yield database_1.default.query("SELECT * FROM the_user, chapter WHERE the_user.id_chapter=chapter.id_chapter AND chapter.id_chapter=" + id_chapter);
+            if (results.length === 0) {
+                return res.status(404).send({ text: "No hay ningun usuario registrado en el capitulo con id " + id_chapter });
+            }
             res.send(results);
         });
     }
@@ -35,10 +52,10 @@ class UserController {
         return __awaiter(this, void 0, void 0, function* () {
             const user = yield database_1.default.query("SELECT * FROM the_user, chapter WHERE the_user.id_user=" + req.body.id_user);
             if (user.length === 0)
-                res.status(404).send({ text: "No existe ningun usuario con el id enviado" });
+                return res.status(404).send({ text: "No existe ningun usuario con el id enviado" });
             const chapter = yield database_1.default.query("SELECT * FROM chapter WHERE chapter.id_chapter=" + req.body.id_chapter);
             if (chapter.length === 0)
-                res.status(404).send({ text: "No existe ningun captiulo con el id enviado" });
+                return res.status(404).send({ text: "No existe ningun captiulo con el id enviado" });
             const results = yield database_1.default.query("UPDATE the_user SET name_user=?,u_password=?,id_chapter=? WHERE id_user=?", [
                 req.body.name_user,
                 req.body.u_password,

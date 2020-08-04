@@ -1,6 +1,7 @@
 import {Router} from 'express';
 
 import {userController} from '../controllers/userController';
+import {verifyToken} from '../verifyToken'
 
 class UserRoutes
 {
@@ -13,9 +14,10 @@ class UserRoutes
 
     config() : void
     {
-        this.router.get('/',userController.GetAll);
-        this.router.get('/:id_user',userController.Get);
-        this.router.put('/edit',userController.Update);
+        this.router.get('/',verifyToken.verify,userController.GetAll);
+        this.router.get('/:id_user',verifyToken.verify,userController.Get);
+        this.router.get('/chapter/:id_chapter',verifyToken.verify,userController.GetForChapter);
+        this.router.put('/edit',verifyToken.verify,userController.Update);
     }
 }
 

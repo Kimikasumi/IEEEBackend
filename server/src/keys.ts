@@ -4,7 +4,7 @@ export default
     {
         host: 'localhost',
         user: 'root',
-        password: '1234',
+        password: '',
         database: 'ieeedb'
     }
 }

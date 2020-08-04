@@ -12,6 +12,7 @@ const sesionRoutes_1 = __importDefault(require("./routes/sesionRoutes"));
 const PicturesRoutes_1 = __importDefault(require("./routes/PicturesRoutes"));
 const path_1 = __importDefault(require("path"));
 const userRoutes_1 = __importDefault(require("./routes/userRoutes"));
+const eventRoutes_1 = __importDefault(require("./routes/eventRoutes"));
 class Server {
     constructor() {
         this.app = express_1.default();
@@ -32,6 +33,7 @@ class Server {
         this.app.use('/api/Sesion', sesionRoutes_1.default);
         this.app.use('/api/Pictures', PicturesRoutes_1.default);
         this.app.use('/api/User', userRoutes_1.default);
+        this.app.use('/api/Event', eventRoutes_1.default);
     }
     start() {
         this.app.listen(this.app.get('port'));
