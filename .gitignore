@@ -1,3 +1,4 @@
 /server/.ENV
 /server/node_modules
 /server/.ENV
+/server/src/keys.ts
