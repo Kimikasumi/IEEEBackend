@@ -20,15 +20,15 @@ class SesionController {
         return __awaiter(this, void 0, void 0, function* () {
             const name_user = req.body.name_user;
             const u_password = req.body.u_password;
-            const usuario = yield database_1.default.query("SELECT * FROM the_user WHERE name_user='" + name_user + "' AND u_password='" + u_password + "'");
+            const usuario = yield database_1.default.query("SELECT * FROM the_user, chapter WHERE chapter.id_chapter = the_user.id_chapter AND name_user='" + name_user + "' AND u_password='" + u_password + "'");
             if (usuario[0] == null) {
-                return res.json({ text: 'Usuario o contraseña incorrecto' });
+                return res.json({ error: 'Usuario o contraseña incorrecto' });
             }
             //Create and put a token
             const token = jwt.sign({ id_user: usuario[0].u_password }, "token", {
                 expiresIn: '1h'
             });
-            return res.header('auth-token', token).send(token);
+            return res.header('auth-token', token).send({ text: token, user: usuario });
         });
     }
 }
